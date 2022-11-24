@@ -1,9 +1,11 @@
 import React from 'react'
+import './ToDoListItem.css';
 
-function ToDoListItem() {
+
+function ToDoListItem({key,title}) {
   return (
-    <div>
-      
+    <div key={key} className='todo-list-item'>
+      <p>{title}</p>
     </div>
   )
 }
