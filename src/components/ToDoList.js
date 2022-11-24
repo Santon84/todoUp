@@ -15,7 +15,7 @@ const [todos, setToDos] = useState([
   return (
     <div>
       {todos.map((todoitem) => {
-        return <ToDoListItem key ={todoitem.id} title={todoitem.title}/>
+        return <ToDoListItem setToDo={setToDos} key ={todoitem.id} title={todoitem.title}/>
       })
       
       }
