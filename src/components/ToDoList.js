@@ -3,20 +3,19 @@ import ToDoListItem from './ToDoListItem'
 
 import { useState, useEffect } from 'react'
   
-const ToDoList = () => {
-const [newId, setNewId] = useState(3);
+const ToDoList = ({setCurrentToDo,setShowModal}) => {
+const [newId, setNewId] = useState(4);
 const [todos, setToDos] = useState([
   {id: 1, title: "Сделать проект", descr: "приложение на React по вакансии",completed: false},
   {id: 2, title: "Сходить в магазин", descr: "купить хлеб", completed: false},
   {id: 3, title: "Изучить работу DB", descr: "MS SQL", completed: true}  
 ])
   
-function addNewItemClick() {
+async function addNewToDoItem() {
     setToDos(prev => {
-      console.log('before'+newId);
+      
       setNewId(prevId => prevId + 1);
-      console.log('after'+newId);
-      return [{id: newId, title: "NEW ITEM "+newId, descr: "MS SQL"}, ...prev ]
+      return [{id: newId, title: "NEW ITEM "+newId, descr: "MS SQL"}, ...prev ];
 
     })
 }
@@ -48,15 +47,20 @@ useEffect(() => {
   console.log(todos)
 },[todos])
 
+
+
+
   return (
     <div>
-      <button type='button' onClick={addNewItemClick}>+</button>
+      <button type='button' onClick={addNewToDoItem}>+</button>
       {todos.map((todoItem) => {
           
           return <ToDoListItem 
                         deleteItem={deleteToDoItem} 
                         todoItem={todoItem}
                         checkItem={checkItem}
+                        setCurrentToDo={setCurrentToDo}
+                        setShowModal={setShowModal}
                         />
         })
       }

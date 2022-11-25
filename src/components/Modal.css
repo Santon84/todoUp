@@ -1,0 +1,82 @@
+.modal {
+  box-sizing: border-box;
+  font-size: 18px;
+  color: #000;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  z-index: 4000;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: auto;
+}
+.modal .modal-window {
+  max-width: 400px;
+  min-height: 60%;
+  margin: 65px auto;
+  background-color: #ffffff;
+  padding: 40px;
+  box-sizing: border-box;
+  overflow: auto;
+  position: relative;
+  border-radius: 20px;
+}
+.modal .modal-window .modal-conteiner {
+  display: flex;
+  gap: 10px;
+  text-align: left;
+  flex-direction: column;
+}
+.modal .modal-window .modal-conteiner input {
+  padding: 15px 10px;
+  border-radius: 10px;
+  border: none;
+  background-color: #e5e4e4;
+}
+.modal .modal-window .modal-conteiner input[type='checkbox'] {
+  width: 20px;
+  height: 20px;
+}
+.modal .modal-window .modal-conteiner textarea {
+  padding: 15px 10px;
+  height: 120px;
+  border-radius: 10px;
+  border: none;
+  background-color: #e5e4e4;
+}
+.modal .modal-window .modal-conteiner .checkbox-conteiner {
+  display: flex;
+  gap: 7px;
+}
+.modal .modal-window .modal-conteiner .modal-btn-conteiner {
+  display: flex;
+  gap: 10px;
+}
+.modal .modal-window .modal-conteiner .modal-btn-conteiner button {
+  cursor: pointer;
+  width: 120px;
+  height: 40px;
+  border: none;
+}
+.modal .modal-window .modal-conteiner .modal-btn-conteiner .modal-primary-btn {
+  background-color: blue;
+  color: #fff;
+}
+.modal .modal-close-button {
+  font-size: 60px;
+  background-color: transparent;
+  color: #292019;
+  border: none;
+  text-align: right;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  line-height: 40px;
+}
+.modal .modal-close-button:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
