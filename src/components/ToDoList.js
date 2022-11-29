@@ -1,22 +1,22 @@
 import React from 'react'
 import ToDoListItem from './ToDoListItem'
 import dayjs from 'dayjs';
-import { useState, useEffect } from 'react'
-  
-const ToDoList = ({setToDos, todos, setCurrentToDo,setShowModal}) => {
-const [newId, setNewId] = useState(4);
 
   
-async function addNewToDoItem() {
+const ToDoList = ({setToDos, todos, setCurrentToDo,setShowModal}) => {
+
+
   
-  setNewId(prevId => prevId + 1, ()=> {
-    setToDos(prev => {
+// async function addNewToDoItem() {
+  
+//   setNewId(prevId => prevId + 1, ()=> {
+//     setToDos(prev => {
       
-      return [{id: newId, title: "NEW ITEM "+newId, descr: "MS SQL"}, ...prev ];
-      })
-  })
+//       return [{id: newId, title: "NEW ITEM "+newId, descr: "MS SQL"}, ...prev ];
+//       })
+//   })
   
-}
+// }
 
 function checkItem(id) {
   
@@ -32,9 +32,6 @@ function checkItem(id) {
   
 }
 
-useEffect(() => {
-  
-},[newId])
 
 
 function deleteToDoItem(id) {
