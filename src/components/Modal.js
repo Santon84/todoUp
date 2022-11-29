@@ -14,7 +14,7 @@ const [filesUpload, setFilesUpload] = useState();
 const [filesList, setFilesList] = useState([]);
 const [deleteList, setDeleteList] = useState([]);
 
-const filesListRef = ref(storage, currentToDo.id+"/");
+
 
 console.log('completed');
 console.log(completed)
@@ -36,6 +36,7 @@ const onCloseClick = () => {
  } 
 
  useEffect(() => {
+    const filesListRef = ref(storage, currentToDo.id+"/");
     setFilesList([])
     setDeleteList([])
     
@@ -57,7 +58,7 @@ const onCloseClick = () => {
         })
     })
 
- },[showModal])
+ },[showModal, currentToDo])
 
 
  async function uploadFiles(id) {
