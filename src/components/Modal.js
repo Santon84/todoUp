@@ -7,7 +7,15 @@ import dayjs from 'dayjs';
 
 
 
-function Modal({setIsLoading, setIsNewToDo, isNewToDo, showModal, setShowModal, currentToDo, setCurrentToDo }) {
+function Modal({
+    setIsLoading, 
+    setIsNewToDo, 
+    isNewToDo, 
+    showModal, 
+    setShowModal, 
+    currentToDo, 
+    setCurrentToDo 
+}) {
 
 const { title, descr, completed, deadline } = currentToDo;
 const [filesUpload, setFilesUpload] = useState();
@@ -16,24 +24,8 @@ const [deleteList, setDeleteList] = useState([]);
 
 
 
-console.log('completed');
-console.log(completed)
-const onCloseClick = () => {
-    
-    setShowModal(false);
-    setCurrentToDo({});
-    setIsNewToDo(false)
- }
 
- function onFieldChange(target) {
-    
-    setCurrentToDo(prev => ({...prev, [target.name]:target.value }))
- } 
-
- function onCheckChange(target) {
-    
-    setCurrentToDo(prev => ({...prev, [target.name]:target.checked }))
- } 
+ 
 
  useEffect(() => {
     const filesListRef = ref(storage, currentToDo.id+"/");
@@ -61,6 +53,27 @@ const onCloseClick = () => {
  },[showModal, currentToDo])
 
 
+
+ const onCloseClick = () => {
+    
+    setShowModal(false);
+    setCurrentToDo({});
+    setIsNewToDo(false)
+ }
+
+ function onFieldChange(target) {
+    
+    setCurrentToDo(prev => ({...prev, [target.name]:target.value }))
+ } 
+
+ function onCheckChange(target) {
+    
+    setCurrentToDo(prev => ({...prev, [target.name]:target.checked }))
+ } 
+/** Функция загружает файлы находящиеся в стэйте filesUpload на сервер Firebase Storage
+ * @param {string} id - идентификатор todo элемента для загрузки в формате /id/filename.file все файлы этого todo храняться в отдельной папке
+ *  
+ */
  async function uploadFiles(id) {
     // if no files selected
     if (filesUpload == null) {
@@ -75,7 +88,7 @@ const onCloseClick = () => {
    
     alert('Files uploaded!')
  }
-
+ 
  async function deleteFiles(path, files) {
 
     files.forEach(file => {
