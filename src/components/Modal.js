@@ -39,7 +39,7 @@ const onCloseClick = () => {
     setFilesList([])
     setDeleteList([])
     
-    
+    console.log('USE EFFECT')
     listAll(filesListRef).then(res => {
         res.items.forEach((item, index) => {
             let fileData = {};
@@ -57,7 +57,7 @@ const onCloseClick = () => {
         })
     })
 
- },[showModal,filesListRef])
+ },[showModal])
 
 
  async function uploadFiles(id) {
