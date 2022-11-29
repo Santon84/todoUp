@@ -57,7 +57,7 @@ const onCloseClick = () => {
         })
     })
 
- },[showModal])
+ },[showModal,filesListRef])
 
 
  async function uploadFiles(id) {
