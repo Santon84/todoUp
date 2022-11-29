@@ -38,7 +38,7 @@ const onCloseClick = () => {
  useEffect(() => {
     setFilesList([])
     setDeleteList([])
-    const filesArray = [];
+    
     
     listAll(filesListRef).then(res => {
         res.items.forEach((item, index) => {
