@@ -24,10 +24,41 @@
         position: relative;
         border-radius: 20px;
         .modal-conteiner {
+            form {
             display: flex;
             gap:10px;
             text-align: left;
             flex-direction: column;
+            }
+            ul {
+                list-style: none;
+                position: relative;
+                li {
+                    height: 20px;
+                    display: flex;
+                    align-items: center;
+                    .delete-file-btn {
+                        margin-left: 5px;
+                        cursor: pointer;
+                        display: none;
+                        width: 24px;
+                        height: 24px;
+                        font-size: 25px;
+                        line-height: 1;
+                        border-radius: 30px;
+                        border: none;
+                    }
+
+                }
+                li:hover button {
+                    display: inline;
+
+                }
+            }
+
+            input[type="submit"] {
+                cursor: pointer;
+            }
             input {
                 padding: 15px 10px;
                 //height: 40px;
@@ -38,6 +69,10 @@
             input[type='checkbox'] {
                 width: 20px;
                 height: 20px;
+                
+            }
+            label[for='active_check'] {
+                cursor: pointer;
             }
             textarea {
                 padding: 15px 10px;
@@ -51,15 +86,20 @@
                 gap: 7px;
             
             }
+            .filelist {
+                font-family: 'Raleway', sans-serif;
+                font-size: 12px;
+            }
             .modal-btn-conteiner {
                 display: flex;
                 gap:10px;
-                button {
+                .button {
+                    border-radius: 0;
                     cursor: pointer;
                     width: 120px;
                     height: 40px;
                     border: none;
-
+                    padding: 0;
                 }
                 .modal-primary-btn {
                     background-color: blue;

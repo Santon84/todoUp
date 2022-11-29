@@ -1,10 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Caveat&family=Raleway:wght@300;400;500;600;700&display=swap');
+@main-font: 'Raleway', sans-serif;
+
 * {
-  font-family: 'Raleway', sans-serif;
+  font-family: @main-font;
   
 }
 .App {
   text-align: center;
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  
+  color: white;
 }
 
 .App-logo {

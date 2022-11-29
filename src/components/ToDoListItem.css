@@ -40,13 +40,19 @@
   font-display: swap;
   src: url(https://fonts.gstatic.com/s/raleway/v28/1Ptxg8zYS_SKggPN4iEgvnHyvveLxVs9pYCP.ttf) format('truetype');
 }
+* {
+  margin: 0;
+  padding: 0;
+}
 p {
-  font-size: 30px;
-  font-family: 'Caveat', cursive;
+  font-size: 24px;
 }
 .todo-list-item {
-  width: 300px;
-  padding: 20px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 350px;
+  padding: 10px 10px;
   color: #000;
   background-color: #FFFFFF;
   border-radius: 20px;
@@ -54,17 +60,71 @@ p {
 }
 .todo-list-item.completed {
   text-decoration: line-through;
-  background-color: lightgray;
+  background-color: #e7e7e7;
+}
+.todo-list-item.over-deadline {
+  background-color: #f92020;
+  color: #FFFFFF;
+}
+.todo-list-item.near-deadline {
+  background-color: #9ead2a;
+  color: #FFFFFF;
+}
+.todo-list-item .text-conteiner {
+  width: 250px;
+  text-align: left;
+}
+.todo-list-item .text-conteiner .todo-title {
+  font-family: 'Caveat', cursive;
+  line-height: 1;
+  margin-bottom: 10px;
+}
+.todo-list-item .text-conteiner .todo-description {
+  font-family: 'Raleway', sans-serif;
+  font-size: 14px;
+  height: 38px;
+  overflow: hidden;
 }
 .btn {
-  background-color: #FFFFFF;
+  mix-blend-mode: darken;
+  width: 35px;
+  height: 35px;
+  background-color: #e7e7e7;
+  border-radius: 5px;
   font-size: 30px;
   padding: 2px 10px;
   line-height: 1;
-  border: 1px solid #000;
+  border: none;
+  margin: 5px;
   cursor: pointer;
 }
-.btn:hover {
-  background-color: #000;
+.btn-add {
+  background-color: #4F59C7;
   color: #FFFFFF;
+  font-size: 30px;
+  mix-blend-mode: normal;
+}
+.btn-add:hover {
+  background-color: #e7e7e7;
+  color: #4F59C7;
+}
+.btn-delete {
+  background-image: url('../icons/trash-fill.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.btn-delete:hover {
+  background-color: #bebebe;
+}
+.btn-check {
+  background-image: url('../icons/check_white.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 20px;
+}
+.btn-check:hover {
+  background-color: #4F59C7;
+}
+.btn-check.checked {
+  background-color: #4F59C7;
 }
