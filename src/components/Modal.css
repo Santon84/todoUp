@@ -60,9 +60,6 @@
   cursor: pointer;
 }
 .modal .modal-window .modal-conteiner input {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
   padding: 15px 10px;
   border-radius: 10px;
   border: none;
@@ -95,6 +92,9 @@
   gap: 10px;
 }
 .modal .modal-window .modal-conteiner .modal-btn-conteiner .button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
   border: none;
   border-radius: 5px;
   font-size: 16px;
