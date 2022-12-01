@@ -30,22 +30,27 @@ function App() {
 
   
   
-
+/**
+ * Загрузка всех данных из коллекции 'todos' Firebase
+ * и запись данных в todos.
+ */
 const loadData = async() => {
   
   const todoCollection = collection(db, 'todos');
   const toDoSnapshot = await getDocs(todoCollection);
-  
   const toDoList = toDoSnapshot.docs.map(doc => ({...doc.data(),id: doc.id}));
   setToDos(toDoList);
   setIsLoading(false);
 }
-  
+
+/**
+ * обновляем данные после открытия модального окна или изменения редактируемого туду
+ * 
+ */
 useEffect(() => {
     
     loadData();
   
-    console.log("APP.JS USE EFFECT ON LOAD")
 },[showModal,currentToDo])
 
   

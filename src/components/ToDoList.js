@@ -7,7 +7,9 @@ const ToDoList = ({setToDos, todos, setCurrentToDo, setShowModal}) => {
 
 const [sortedToDos, setSortedToDos] = useState([]);
 
-
+/**
+ * Сортировка туду листа
+ */
 useEffect(() => {
   
   setSortedToDos(todos.sort((a, b) =>  dayjs(b.creationdate) - dayjs(a.creationdate)))

@@ -6,11 +6,7 @@ import { collection, addDoc, updateDoc, doc } from 'firebase/firestore';
 import dayjs from 'dayjs';
 
 
-/**
- * 
- * @param {*} param0 
- * @returns 
- */
+
 function Modal({
     setIsLoading, 
     setIsNewToDo, 
@@ -32,7 +28,7 @@ const [deleteList, setDeleteList] = useState([]);
  * Составляем список файлов в папке данного todo
  */
 useEffect(() => {
-    console.log('USE EFFECT MODAL.JS')
+    
     const filesListRef = ref(storage, currentToDo.id+"/");
     setFilesList([])
     setDeleteList([])
@@ -100,8 +96,8 @@ function onCheckChange(target) {
  *  
  */
  async function uploadFiles(id) {
-    // if no files selected
-    console.log(id)
+    
+    
     if(!id) {return};
     for (let i=0; i<filesUpload.length; i++ ) {
     
@@ -135,7 +131,7 @@ function onCheckChange(target) {
   * @param {string} fileName 
   */
  async function onFileDelete(fileName) {
-    console.log(fileName)
+    
     let newFilesList = filesList.filter(item => item.name !== fileName);
     setFilesList(newFilesList);
     setDeleteList(prev =>[...prev, fileName]);
@@ -177,8 +173,7 @@ async function onSaveClick(e) {
     }
     
     if (filesUpload) {
-        console.log('Files to Upload')
-        console.log(filesUpload)
+        
         uploadFiles(dirId);
     } 
     

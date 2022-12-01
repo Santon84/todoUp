@@ -9,25 +9,31 @@ function ToDoListItem({setToDos, todoItem, setCurrentToDo,setShowModal}) {
   const {id, title, completed, deadline, descr } = todoItem; 
   
   
+  /**
+   * Открываем модальное окно
+   */
   function openToDoModal() {
-    setCurrentToDo(todoItem);
-    setShowModal(prev => !prev);
+      setCurrentToDo(todoItem);
+      setShowModal(prev => !prev);
   }
+
+  // формируем имя класса для туду
   let toDoClass = 'todo-list-item';
   toDoClass += completed ? ' completed' : '';
   
+  // сравниваем даты для отображения дэдлайна
   const date1 = dayjs(deadline),
         daysLeft = Math.ceil(date1.diff(Date(), 'day',true));
-  
-
-  
   if (daysLeft <= 0 && !completed) {
     toDoClass += ' over-deadline';
   } else if (deadline && daysLeft <= 2 && !completed) {
     toDoClass += ' near-deadline';
   } 
   
-
+  /**
+   * Удаление туду айтема из базы и обновление стейта todos
+   * @param {string} id 
+   */
   async function deleteToDo (id) {
     
     setToDos(prev => prev.filter(item => item.id !== id));
@@ -36,7 +42,10 @@ function ToDoListItem({setToDos, todoItem, setCurrentToDo,setShowModal}) {
     
   }
 
-
+  /**
+   * Переключение статуса туду выполнено / в работе
+   * @param {string} id 
+   */
   async function updateStatusToDo (id) {
     setToDos(prev => prev.map(item => {
       if( item.id === id) {
