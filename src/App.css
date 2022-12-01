@@ -44,6 +44,9 @@
   font-family: 'Raleway', sans-serif;
 }
 .App {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   padding: 20px;
   text-align: center;
   background-color: #282c34;
