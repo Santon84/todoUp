@@ -1,7 +1,9 @@
 /**
  * This module
- * @module 
+ * @module Modal
  */
+
+
 
 import React, { useEffect, useState } from 'react'
 import './Modal.css';
