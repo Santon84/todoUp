@@ -24,6 +24,9 @@
   position: relative;
   border-radius: 20px;
 }
+.modal .modal-window .modal-conteiner h2 {
+  margin-bottom: 10px;
+}
 .modal .modal-window .modal-conteiner form {
   display: flex;
   gap: 10px;
@@ -89,16 +92,24 @@
   gap: 10px;
 }
 .modal .modal-window .modal-conteiner .modal-btn-conteiner .button {
-  border-radius: 0;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
   cursor: pointer;
   width: 120px;
   height: 40px;
-  border: none;
   padding: 0;
 }
-.modal .modal-window .modal-conteiner .modal-btn-conteiner .modal-primary-btn {
-  background-color: blue;
+.modal .modal-window .modal-conteiner .modal-btn-conteiner .button:hover {
+  background-color: #bebebe;
   color: #fff;
+}
+.modal .modal-window .modal-conteiner .modal-btn-conteiner .modal-primary-btn {
+  background-color: #4F59C7;
+  color: #fff;
+}
+.modal .modal-window .modal-conteiner .modal-btn-conteiner .modal-primary-btn:hover {
+  background-color: blue ;
 }
 .modal .modal-close-button {
   font-size: 60px;

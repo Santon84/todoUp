@@ -1,67 +1,34 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import ToDoListItem from './ToDoListItem'
 import dayjs from 'dayjs';
 
   
-const ToDoList = ({setToDos, todos, setCurrentToDo,setShowModal}) => {
+const ToDoList = ({setToDos, todos, setCurrentToDo, setShowModal}) => {
+
+const [sortedToDos, setSortedToDos] = useState([]);
 
 
+useEffect(() => {
   
-// async function addNewToDoItem() {
-  
-//   setNewId(prevId => prevId + 1, ()=> {
-//     setToDos(prev => {
-      
-//       return [{id: newId, title: "NEW ITEM "+newId, descr: "MS SQL"}, ...prev ];
-//       })
-//   })
-  
-// }
+  setSortedToDos(todos.sort((a, b) =>  dayjs(b.creationdate) - dayjs(a.creationdate)))
 
-function checkItem(id) {
-  
-  const updatedToDos = todos.map((todo) => {
-    
-    if (todo.id === +id) {
-      return {...todo, completed: !todo.completed}
-    }
-      return todo;
-    })
-  setToDos(updatedToDos);
-
-  
-}
-
-
-
-function deleteToDoItem(id) {
-
-  setToDos(todos => {
-   return todos.filter(todo => todo.id !== +id)
-  })
-  
-
-}
-
-
+},[todos])
 
 
 
 
   return (
     <div>
-      {todos.sort((a, b) =>  dayjs(b.creationdate) - dayjs(a.creationdate)).map((todoItem) => {
-          
+      {sortedToDos.map((todoItem) => {
           return <ToDoListItem 
-                        deleteItem={deleteToDoItem} 
+                        key = {todoItem.id}
                         todoItem={todoItem}
-                        checkItem={checkItem}
                         setCurrentToDo={setCurrentToDo}
                         setShowModal={setShowModal}
+                        setToDos={setToDos}
                         />
         })
       }
-
     </div>
   )
 }
