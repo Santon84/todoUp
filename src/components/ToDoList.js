@@ -1,8 +1,21 @@
+/**
+ * @module ToDoList 
+ */
+
 import React, { useEffect, useState } from 'react'
 import ToDoListItem from './ToDoListItem'
 import dayjs from 'dayjs';
 
-  
+
+
+/**
+ * 
+ * @param {Array.Objects} todos - list of todos
+ * @param {function} setToDos 
+ * @param {function} setCurrentToDo
+ * @param {function} setShowModal
+ * @return {JSX.Element}
+ */
 const ToDoList = ({setToDos, todos, setCurrentToDo, setShowModal}) => {
 
 const [sortedToDos, setSortedToDos] = useState([]);
