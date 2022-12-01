@@ -1,4 +1,32 @@
-/**
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: Modal.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: Modal.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
  * This module
  * @module 
  */
@@ -104,7 +132,7 @@ function onCheckChange(target) {
     
     
     if(!id) {return};
-    for (let i=0; i<filesUpload.length; i++ ) {
+    for (let i=0; i&lt;filesUpload.length; i++ ) {
     
         const filesRef = ref(storage, id+'/'+filesUpload[i].name);
         await uploadBytes(filesRef, filesUpload[i]).catch(err => console.log(err));
@@ -212,38 +240,61 @@ async function onSaveClick(e) {
 
 
 return (
-        <div onClick={(e)=> onModalClick(e)} className='modal' >
-            <div className="modal-window">
-                <button id="modal-close-btn" className="modal-close-button" onClick={() => onCloseClick()} >&times;</button>
-                <div className="modal-conteiner">
-                    <h2>{isNewToDo ? 'Новая задача' : 'Редактировать задачу'}</h2>
-                    <form onSubmit={(e) => onSaveClick(e)}>
-                        <input required onChange={(e) => onFieldChange(e.target)} type='text' className='modal-title' name='title' value={title}></input>
-                        <textarea required onChange={(e) => onFieldChange(e.target)} rows="10" name="descr" className='modal-descr' value={descr}></textarea>
-                        <label htmlFor="deadline">Срок выполнения</label>
-                        <input onChange={(e) => onFieldChange(e.target)} type='date' name='deadline' className='modal-date' value={deadline}></input>
+        &lt;div onClick={(e)=> onModalClick(e)} className='modal' >
+            &lt;div className="modal-window">
+                &lt;button id="modal-close-btn" className="modal-close-button" onClick={() => onCloseClick()} >&amp;times;&lt;/button>
+                &lt;div className="modal-conteiner">
+                    &lt;h2>{isNewToDo ? 'Новая задача' : 'Редактировать задачу'}&lt;/h2>
+                    &lt;form onSubmit={(e) => onSaveClick(e)}>
+                        &lt;input required onChange={(e) => onFieldChange(e.target)} type='text' className='modal-title' name='title' value={title}>&lt;/input>
+                        &lt;textarea required onChange={(e) => onFieldChange(e.target)} rows="10" name="descr" className='modal-descr' value={descr}>&lt;/textarea>
+                        &lt;label htmlFor="deadline">Срок выполнения&lt;/label>
+                        &lt;input onChange={(e) => onFieldChange(e.target)} type='date' name='deadline' className='modal-date' value={deadline}>&lt;/input>
                         
-                        <div className='checkbox-conteiner'>
-                            <input onChange={(e) => onCheckChange(e.target)}  id='active_check' defaultChecked={completed} type='checkbox' name='completed'></input>
-                            <label htmlFor="active_check">Выполнено</label>
-                        </div>
-                        <ul>
+                        &lt;div className='checkbox-conteiner'>
+                            &lt;input onChange={(e) => onCheckChange(e.target)}  id='active_check' defaultChecked={completed} type='checkbox' name='completed'>&lt;/input>
+                            &lt;label htmlFor="active_check">Выполнено&lt;/label>
+                        &lt;/div>
+                        &lt;ul>
                             {filesList.map((item,index) => {
-                                 return <li key={index}><a target='_blank' className='filelist' href={item.url} rel="noreferrer">{item.name}</a><button data-filename={item.name} type='button' onClick={(e) => onFileDelete(e.target.dataset.filename)} className='delete-file-btn'>&times;</button></li>
+                                 return &lt;li key={index}>&lt;a target='_blank' className='filelist' href={item.url} rel="noreferrer">{item.name}&lt;/a>&lt;button data-filename={item.name} type='button' onClick={(e) => onFileDelete(e.target.dataset.filename)} className='delete-file-btn'>&amp;times;&lt;/button>&lt;/li>
                             })}
-                        </ul>
-                        <input multiple="multiple" name="files" type="file" onChange={(e) => setFilesUpload(e.target.files)}></input>
-                        <div className='modal-btn-conteiner'>
-                            <input type="submit" className='button modal-primary-btn' value="Сохранить" />
-                            <button onClick={onCloseClick} className='button'>Отмена</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+                        &lt;/ul>
+                        &lt;input multiple="multiple" name="files" type="file" onChange={(e) => setFilesUpload(e.target.files)}>&lt;/input>
+                        &lt;div className='modal-btn-conteiner'>
+                            &lt;input type="submit" className='button modal-primary-btn' value="Сохранить" />
+                            &lt;button onClick={onCloseClick} className='button'>Отмена&lt;/button>
+                        &lt;/div>
+                    &lt;/form>
+                &lt;/div>
+            &lt;/div>
+        &lt;/div>
   );
 }
 
 export default Modal;
 
 
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Modal.html">Modal</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Thu Dec 01 2022 17:53:05 GMT+0300 (Москва, стандартное время)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

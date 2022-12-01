@@ -41,9 +41,11 @@
   src: url(https://fonts.gstatic.com/s/raleway/v28/1Ptxg8zYS_SKggPN4iEgvnHyvveLxVs9pYCP.ttf) format('truetype');
 }
 * {
+  
   font-family: 'Raleway', sans-serif;
 }
 .App {
+  -webkit-appearance: none;
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
