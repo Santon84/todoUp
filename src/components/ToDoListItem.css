@@ -70,6 +70,9 @@ p {
   background-color: #9ead2a;
   color: #FFFFFF;
 }
+.todo-list-item.near-deadline .btn {
+  mix-blend-mode: normal;
+}
 .todo-list-item .text-conteiner {
   width: 250px;
   text-align: left;
