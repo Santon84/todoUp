@@ -82,6 +82,7 @@
 .modal .modal-window .modal-conteiner .checkbox-conteiner {
   display: flex;
   gap: 7px;
+  align-items: center;
 }
 .modal .modal-window .modal-conteiner .filelist {
   font-family: 'Raleway', sans-serif;
