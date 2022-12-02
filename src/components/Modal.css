@@ -68,9 +68,12 @@
 .modal .modal-window .modal-conteiner input[type='checkbox'] {
   width: 20px;
   height: 20px;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+  margin: 0;
+}
+@media (max-width: 640px) {
+  .modal .modal-window .modal-conteiner input[type='checkbox'] {
+    margin-right: 10px;
+  }
 }
 .modal .modal-window .modal-conteiner label[for='active_check'] {
   cursor: pointer;
@@ -86,6 +89,7 @@
   display: flex;
   gap: 7px;
   align-items: center;
+  margin-top: 10px;
 }
 .modal .modal-window .modal-conteiner .filelist {
   font-family: 'Raleway', sans-serif;
@@ -110,6 +114,11 @@
 .modal .modal-window .modal-conteiner .modal-btn-conteiner .button:hover {
   background-color: #bebebe;
   color: #fff;
+}
+@media (max-width: 640px) {
+  .modal .modal-window .modal-conteiner .modal-btn-conteiner .button {
+    margin-right: 10px;
+  }
 }
 .modal .modal-window .modal-conteiner .modal-btn-conteiner .modal-primary-btn {
   background-color: #4F59C7;

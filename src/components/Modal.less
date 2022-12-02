@@ -76,9 +76,10 @@
             input[type='checkbox'] {
                 width: 20px;
                 height: 20px;
-                -webkit-appearance: none;
-                -moz-appearance: none;
-                appearance: none;
+                margin: 0;    
+                @media (max-width:640px) {
+                    margin-right: 10px;
+                }
                 
             }
             label[for='active_check'] {
@@ -95,7 +96,7 @@
                 display: flex;
                 gap: 7px;
                 align-items: center;
-            
+                margin-top: 10px;
             }
             .filelist {
                 font-family: 'Raleway', sans-serif;
@@ -119,6 +120,9 @@
                     &:hover {
                         background-color: @dark-grey-color;
                         color: #fff;
+                    }
+                    @media (max-width:640px) {
+                        margin-right: 10px;
                     }
                 }
                 .modal-primary-btn {
