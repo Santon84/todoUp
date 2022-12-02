@@ -73,8 +73,13 @@
 @media (max-width: 640px) {
   .modal .modal-window .modal-conteiner input[type='checkbox'] {
     margin-right: 10px;
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
+  }
+}
+@media (max-width: 640px) {
+  .modal .modal-window .modal-conteiner input[type='date'] {
+    height: 30px;
   }
 }
 .modal .modal-window .modal-conteiner label[for='active_check'] {
