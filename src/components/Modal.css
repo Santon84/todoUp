@@ -130,7 +130,8 @@
   cursor: pointer;
 }
 @media screen and (max-width: 640px) {
-  input {
+  input,
+  textarea {
     margin-top: 10px;
   }
 }
