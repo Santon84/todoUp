@@ -73,6 +73,8 @@
 @media (max-width: 640px) {
   .modal .modal-window .modal-conteiner input[type='checkbox'] {
     margin-right: 10px;
+    width: 40px;
+    height: 40px;
   }
 }
 .modal .modal-window .modal-conteiner label[for='active_check'] {
