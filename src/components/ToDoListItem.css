@@ -122,8 +122,10 @@ p {
   background-position: center;
   background-size: 20px;
 }
-.btn-check:hover {
-  background-color: #4F59C7;
+@media (min-width: 640px) {
+  .btn-check:hover {
+    background-color: #4F59C7;
+  }
 }
 .btn-check.checked {
   background-color: #4F59C7;

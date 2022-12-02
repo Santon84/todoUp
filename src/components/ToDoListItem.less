@@ -98,10 +98,13 @@ p {
     background-position: center;
     background-size: 20px;
     &:hover {
+        @media (min-width: 640px) {
         //background-image: url('../icons/check-square-fill\ 1.svg');
         background-color: @primary-color;
+        }
     }
     &.checked {
         background-color: @primary-color;
     }
+    
 }
