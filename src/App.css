@@ -41,11 +41,9 @@
   src: url(https://fonts.gstatic.com/s/raleway/v28/1Ptxg8zYS_SKggPN4iEgvnHyvveLxVs9pYCP.ttf) format('truetype');
 }
 * {
-  
   font-family: 'Raleway', sans-serif;
 }
 .App {
-  
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -58,6 +56,11 @@
   align-items: center;
   justify-content: center;
   color: white;
+}
+@media (max-width: 640px) {
+  .App {
+    padding: 10px;
+  }
 }
 .App-logo {
   height: 40vmin;
