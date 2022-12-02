@@ -261,7 +261,7 @@ return (
                         <input multiple="multiple" name="files" type="file" onChange={(e) => setFilesUpload(e.target.files)}></input>
                         <div className='modal-btn-conteiner'>
                             <input type="submit" className='button modal-primary-btn' value="Сохранить" />
-                            <input type="button" onClick={onCloseClick} className='button'>Отмена</input>
+                            <input type="button" onClick={onCloseClick} className='button' value="Отмена"/>
                         </div>
                     </form>
                 </div>
