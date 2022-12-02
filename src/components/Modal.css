@@ -102,6 +102,14 @@
   font-family: 'Raleway', sans-serif;
   font-size: 12px;
 }
+@media (max-width: 640px) {
+  .modal .modal-window .modal-conteiner input[type="text"],
+  .modal .modal-window .modal-conteiner input[type="date"],
+  .modal .modal-window .modal-conteiner input[type="file"],
+  .modal .modal-window .modal-conteiner textarea {
+    font-size: 16px;
+  }
+}
 .modal .modal-window .modal-conteiner .modal-btn-conteiner {
   display: flex;
   gap: 10px;
