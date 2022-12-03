@@ -57,9 +57,11 @@ function ToDoListItem({setToDos, todoItem, setCurrentToDo,setShowModal}) {
    * @param {string} id - id туду элемента
    */
   async function deleteToDo (id) {
-    
-    setToDos(prev => prev.filter(item => item.id !== id));
-    await deleteDoc(doc(db,'todos', id));
+
+    if (window.confirm('Точно удалить задачу?')) {
+      setToDos(prev => prev.filter(item => item.id !== id));
+      await deleteDoc(doc(db,'todos', id));
+    }
   }
 
   /**
