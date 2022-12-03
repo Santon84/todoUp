@@ -255,7 +255,13 @@ return (
                         </div>
                         <ul>
                             {filesList.map((item,index) => {
-                                 return <li key={index}><a target='_blank' className='filelist' href={item.url} rel="noreferrer">{item.name}</a><button data-filename={item.name} type='button' onClick={(e) => onFileDelete(e.target.dataset.filename)} className='delete-file-btn'>&times;</button></li>
+                                 return <li key={index}>
+                                    
+                                    <a target='_blank' className='filelist' href={item.url} rel="noreferrer">{item.name}
+                                    
+                                    </a>
+                                    
+                                    <button data-filename={item.name} type='button' onClick={(e) => onFileDelete(e.target.dataset.filename)} className='delete-file-btn'>&times;</button></li>
                             })}
                         </ul>
                         <input multiple="multiple" name="files" type="file" onChange={(e) => setFilesUpload(e.target.files)}></input>

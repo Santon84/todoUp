@@ -10,7 +10,8 @@ import { db } from '../firebase';
 function ToDoListItem({setToDos, todoItem, setCurrentToDo,setShowModal}) {
   
   const {id, title, completed, deadline, descr } = todoItem; 
-  
+  const descrLenth = 55;
+  const shortDescr = descr.length > descrLenth ? descr.substring(0,descrLenth)+'...' : descr;
   /**
    * Открывает модальное окно 
    * Устанавливает текущий(currentToDo) туду по которому кликнули 
@@ -87,7 +88,7 @@ function ToDoListItem({setToDos, todoItem, setCurrentToDo,setShowModal}) {
       <button  onClick={(e) => updateStatusToDo(e.target.parentNode.dataset.key)} className={todoItem.completed ? 'btn btn-check checked' : 'btn btn-check'} type='button'></button>
       <div  className='text-conteiner'>
         <a href='#edit-todo'><p className='todo-title' onClick={openToDoModal}>{title}</p></a>
-        <p className='todo-description'>{descr}</p>
+        <p className='todo-description'>{shortDescr}</p>
       </div>
       <button  onClick={(e) => deleteToDo(e.target.parentNode.dataset.key)} className='btn btn-delete' type='button'></button>
       </div>
