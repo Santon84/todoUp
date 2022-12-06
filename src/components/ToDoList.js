@@ -44,7 +44,7 @@ useEffect(() => {
     }))
     
   }
-},[filteredToDos, keyword])
+},[filteredToDos, keyword, todos])
 
 
 
