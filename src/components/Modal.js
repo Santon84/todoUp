@@ -5,7 +5,7 @@
 
 
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import './Modal.css';
 import {db , storage} from '../firebase';
 import {ref, uploadBytes, listAll, getDownloadURL, deleteObject} from 'firebase/storage'
@@ -26,6 +26,7 @@ function Modal({
 
 const { title = '', descr = '', completed, deadline } = currentToDo;
 
+const titleRef = useRef();
 
 /**
  * HTMLInputElement.files: FileList 
@@ -73,8 +74,8 @@ useEffect(() => {
         })
     })
     
-
-},[showModal, currentToDo])
+if (showModal) {titleRef.current.focus();}
+},[showModal, currentToDo.id])
 
 
 
@@ -244,7 +245,7 @@ return (
                 <div className="modal-conteiner">
                     <h2>{isNewToDo ? 'Новая задача' : 'Редактировать задачу'}</h2>
                     <form onSubmit={(e) => onSaveClick(e)}>
-                        <input required onChange={(e) => onFieldChange(e.target)} type='text' className='modal-title' name='title' value={title}></input>
+                        <input ref={titleRef} required onChange={(e) => onFieldChange(e.target)} type='text' className='modal-title' name='title' value={title}></input>
                         <textarea required onChange={(e) => onFieldChange(e.target)} rows="10" name="descr" className='modal-descr' value={descr}></textarea>
                         <label htmlFor="deadline">Срок выполнения</label>
                         <input onChange={(e) => onFieldChange(e.target)} type='date' name='deadline' className='modal-date' value={deadline}></input>
