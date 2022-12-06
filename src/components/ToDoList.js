@@ -40,7 +40,7 @@ useEffect(() => {
   if (keyword !== '') {
     setSortedToDos(prev => prev.filter(item => {
       console.log(item.title);
-      return item.title.toLowerCase().includes((keyword.toLowerCase())) ;
+      return item.title.toLowerCase().includes((keyword.toLowerCase())) || item.descr.toLowerCase().includes((keyword.toLowerCase()));
     }))
     
   }
