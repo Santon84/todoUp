@@ -16,7 +16,7 @@ import dayjs from 'dayjs';
  * @param {function} setShowModal
  * @return {JSX.Element}
  */
-const ToDoList = ({setToDos, todos, setCurrentToDo, setShowModal}) => {
+const ToDoList = ({keyword, filteredToDos, setToDos, todos, setCurrentToDo, setShowModal}) => {
 
 const [sortedToDos, setSortedToDos] = useState([]);
 
@@ -27,8 +27,24 @@ useEffect(() => {
   
   setSortedToDos(todos.sort((a, b) =>  dayjs(b.creationdate) - dayjs(a.creationdate)))
 
+
+
 },[todos])
 
+useEffect(() => {
+
+  setSortedToDos(todos.filter(item => {
+    return item.completed !== filteredToDos
+  }))
+
+  if (keyword !== '') {
+    setSortedToDos(prev => prev.filter(item => {
+      console.log(item.title);
+      return item.title.toLowerCase().includes((keyword.toLowerCase())) ;
+    }))
+    
+  }
+},[filteredToDos, keyword])
 
 
 

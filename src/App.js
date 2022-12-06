@@ -42,9 +42,10 @@ function App() {
   const [showModal, setShowModal] = useState(false);
   const [currentToDo, setCurrentToDo] = useState({})
   const [todos, setToDos] = useState([]);
+  const [filteredToDos, setFilteredToDos] = useState('')
   const [isNewToDo, setIsNewToDo] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-
+  const [keyword, setKeyword] = useState('')
   
   
 /**
@@ -73,7 +74,24 @@ useEffect(() => {
 },[showModal,currentToDo])
 
   
+const filterItems = (value) => {
 
+  switch (value) {
+    case 'all' : 
+      setFilteredToDos('');
+      break;
+    case 'done' : 
+      setFilteredToDos(false);
+      break;
+    case 'work' : 
+      setFilteredToDos(true);
+      break;
+
+    default: setFilteredToDos('');
+
+  }
+
+}
 
 
 /**
@@ -91,13 +109,22 @@ async function onAddNewToDoClick() {
     <div className="App">
 
       <h1>TODO LIST</h1>
+      <div className='top-wrapper'>
       <button className='btn btn-add' onClick={onAddNewToDoClick}>+</button>
-      
+      <input type='search' onChange={e => setKeyword(e.target.value)}></input>
+      <select onChange={(e) => filterItems(e.target.value)}>
+        <option value='all'>Все</option>
+        <option value='work'>В работе</option>
+        <option value='done'>Завершенные</option>
+      </select>
+      </div>
       <ToDoList 
           todos={todos} 
+          filteredToDos={filteredToDos}
           setToDos={setToDos} 
           setCurrentToDo={setCurrentToDo} 
           setShowModal={setShowModal}
+          keyword = {keyword}
       />
       <Modal 
           showModal={showModal} 

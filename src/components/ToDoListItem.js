@@ -7,7 +7,7 @@ import dayjs from 'dayjs'
 import { deleteDoc, doc, updateDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 
-function ToDoListItem({setToDos, todoItem, setCurrentToDo,setShowModal}) {
+function ToDoListItem({ setToDos, todoItem, setCurrentToDo,setShowModal}) {
   
   const {id, title, completed, deadline, descr } = todoItem; 
   const descrLenth = 55;
