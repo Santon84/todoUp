@@ -74,8 +74,7 @@
 .App .top-wrapper input {
   margin: 0;
   font-size: 16px;
-  height: 30px;
-}
-.App .top-wrapper input {
+  height: 35px;
+  border-radius: 20px;
   padding-left: 10px;
 }
