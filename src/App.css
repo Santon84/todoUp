@@ -73,14 +73,10 @@
 }
 .App .top-wrapper select,
 .App .top-wrapper input {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
   margin: 0;
   font-size: 16px;
   border: none;
   height: 35px;
-  border-radius: 20px;
   padding-left: 10px;
   background-color: #e3e0e0;
 }
