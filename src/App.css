@@ -78,6 +78,7 @@
   appearance: none;
   margin: 0;
   font-size: 16px;
+  border: none;
   height: 35px;
   border-radius: 20px;
   padding-left: 10px;
@@ -86,4 +87,7 @@
 .App .top-wrapper select:focus,
 .App .top-wrapper input:focus {
   background-color: #fff;
+}
+.App .top-wrapper select {
+  padding-right: 10px;
 }
