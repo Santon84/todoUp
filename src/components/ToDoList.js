@@ -64,4 +64,8 @@ useEffect(() => {
   )
 }
 
+ToDoList.defaultProps = {
+  keyword:''
+}
+
 export default ToDoList

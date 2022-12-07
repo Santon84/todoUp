@@ -51,30 +51,31 @@ const [deleteList, setDeleteList] = useState([]);
  * Составляем список файлов в папке данного todo
  */
 useEffect(() => {
-    
-    const filesListRef = ref(storage, currentToDo.id+"/");
-    setFilesList([])
-    setDeleteList([])
-    setFilesUpload()
+    if (showModal) {
+        const filesListRef = ref(storage, currentToDo.id+"/");
+        setFilesList([])
+        setDeleteList([])
+        setFilesUpload()
+        titleRef.current.focus();
+        listAll(filesListRef).then(res => {
+            res.items.forEach((item, index) => {
+                let fileData = {};
+                            
+                getDownloadURL(item).then(url => {
+                    fileData['url'] = url;
+                    fileData['name'] = item.name; 
+                    
+                    setFilesList(prev => [...prev, fileData])
+                    
+                })            
+                .catch(err => console.warn(err))
+                .finally(fileData={})
 
-    listAll(filesListRef).then(res => {
-        res.items.forEach((item, index) => {
-            let fileData = {};
-                        
-            getDownloadURL(item).then(url => {
-                fileData['url'] = url;
-                fileData['name'] = item.name; 
-                
-                setFilesList(prev => [...prev, fileData])
-                
-            })            
-            .catch(err => console.warn(err))
-            .finally(fileData={})
-
+            })
         })
-    })
     
-if (showModal) {titleRef.current.focus();}
+    
+}
 },[showModal, currentToDo.id])
 
 
