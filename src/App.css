@@ -73,6 +73,9 @@
 }
 .App .top-wrapper select,
 .App .top-wrapper input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
   margin: 0;
   font-size: 16px;
   height: 35px;
