@@ -109,8 +109,9 @@ async function onAddNewToDoClick() {
     <div className="App">
 
       <h1>TODO LIST</h1>
-      <div className='top-wrapper'>
       <button className='btn btn-add' onClick={onAddNewToDoClick}>+</button>
+      
+      <div className='top-wrapper'>
       <input type='search' onChange={e => setKeyword(e.target.value)}></input>
       <select onChange={(e) => filterItems(e.target.value)}>
         <option value='all'>Все</option>
