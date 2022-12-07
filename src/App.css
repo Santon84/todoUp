@@ -76,3 +76,6 @@
   font-size: 16px;
   height: 30px;
 }
+.App .top-wrapper select {
+  padding-left: 10px;
+}
