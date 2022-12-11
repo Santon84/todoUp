@@ -2,14 +2,14 @@
  * @module ToDoList 
  */
 
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, memo } from 'react'
 import ToDoListItem from './ToDoListItem'
 import dayjs from 'dayjs';
 
 
 
 /**
- * 
+ * @param {string} keyword search keyword
  * @param {Array.Objects} todos - list of todos
  * @param {function} setToDos 
  * @param {function} setCurrentToDo
@@ -47,7 +47,7 @@ useEffect(() => {
 },[filteredToDos, keyword, todos])
 
 
-
+console.log('ToDoList render');
   return (
     <div>
       {sortedToDos.map((todoItem) => {
@@ -64,8 +64,6 @@ useEffect(() => {
   )
 }
 
-ToDoList.defaultProps = {
-  keyword:''
-}
 
-export default ToDoList
+
+export default memo(ToDoList)

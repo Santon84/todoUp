@@ -1,7 +1,7 @@
 /**
  * @module ToDoListItem
  */
-import React from 'react'
+import React, {memo} from 'react'
 import './ToDoListItem.css';
 import dayjs from 'dayjs'
 import { deleteDoc, doc, updateDoc } from 'firebase/firestore';
@@ -84,7 +84,7 @@ function ToDoListItem({ setToDos, todoItem, setCurrentToDo,setShowModal}) {
 
   }
 
-  
+  console.log('todolistItem render');
   return (
     <div data-key={id} key={id} className={toDoClass}>
       <button  onClick={(e) => updateStatusToDo(e.target.parentNode.dataset.key)} className={todoItem.completed ? 'btn btn-check checked' : 'btn btn-check'} type='button'></button>
@@ -97,4 +97,4 @@ function ToDoListItem({ setToDos, todoItem, setCurrentToDo,setShowModal}) {
   )
 }
 
-export default ToDoListItem
+export default memo(ToDoListItem)

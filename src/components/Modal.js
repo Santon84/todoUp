@@ -21,12 +21,23 @@ function Modal({
     showModal, 
     setShowModal, 
     currentToDo, 
-    setCurrentToDo 
+    setCurrentToDo,
+    setToDos 
 }) {
 
 const { title = '', descr = '', completed, deadline } = currentToDo;
 
+console.log('updating '+ title);
+
 const titleRef = useRef();
+const [isEdited, setIsEdited] = useState(false);
+
+
+
+
+
+
+
 
 /**
  * HTMLInputElement.files: FileList 
@@ -52,6 +63,10 @@ const [deleteList, setDeleteList] = useState([]);
  */
 useEffect(() => {
     if (showModal) {
+        console.log('getData')
+        setIsEdited(false);
+        // beforeToDo.current = clone(currentToDo);
+        //rememberState();
         const filesListRef = ref(storage, currentToDo.id+"/");
         setFilesList([])
         setDeleteList([])
@@ -85,44 +100,46 @@ useEffect(() => {
  * @function onCloseClick
  */
  const onCloseClick = () => {
-    
+    //beforeToDo.current = {};
     setShowModal(false);
+    setIsEdited(false);
     setCurrentToDo({});
-    setIsNewToDo(false)
+    if (isNewToDo) { setIsNewToDo(false) };
  }
 
 /**
  * Обновляем поля ввода Input
  * @function onFieldChange
- * @param {event.target} target 
+ * @param {event.target} target target input
  */
  function onFieldChange(target) {
-    
-    setCurrentToDo(prev => ({...prev, [target.name]:target.value }))
+    if (!isEdited) {setIsEdited(true)}
+    setCurrentToDo(prev => ({...prev, [target.name]: target.type === 'checkbox' ? target.checked : target.value }))
  } 
 
 
 
 /**
  * Обновляем поле Checkbox - выполнено
- * @function onCheckChange
- * @param {event.target} target 
- */
+//  * @function onCheckChange
+//  * @param {event.target} target checkbox
+//  */
 
-function onCheckChange(target) {
+// function onCheckChange(target) {
     
-    setCurrentToDo(prev => ({...prev, [target.name]:target.checked }))
- } 
+//     setCurrentToDo(prev => ({...prev, [target.name]:target.checked }))
+//  } 
 
 
 
 
 /** Функция загружает файлы находящиеся в стэйте filesUpload на сервер Firebase Storage
  * @function uploadFiles
- * @async
+ * 
  * @param {string} id - идентификатор todo элемента для загрузки в формате /id/filename.file все файлы этого todo храняться в отдельной папке
  *  
  */
+ 
  async function uploadFiles(id) {
     
     
@@ -133,9 +150,12 @@ function onCheckChange(target) {
         await uploadBytes(filesRef, filesUpload[i]).catch(err => console.log(err));
     };
     setFilesUpload({})
+    
     alert('Files uploaded!')
+    
  }
- 
+
+
  /** 
   * Удаление файлов из storage
   * @function deleteFiles
@@ -181,6 +201,7 @@ function onCheckChange(target) {
  */
 async function onSaveClick(e) {
     if (e) {e.preventDefault()};
+    //console.log(beforeToDo)
     setIsLoading(true);
     let dirId = '';
 
@@ -193,21 +214,40 @@ async function onSaveClick(e) {
         creationdate: dayjs(Date()).format('YYYY-MM-DD HH:mm:ss')
     });
     dirId = toDoId.id;
+    setToDos(prev => {
+        return [...prev, {...currentToDo, id: dirId}]
+     })
     
-    }else    {
-    await updateDoc(doc(db,'todos', currentToDo.id), {
-            title: currentToDo.title,
-            descr: currentToDo.descr,
-            deadline: !currentToDo.deadline ? '' : dayjs(currentToDo.deadline).format('YYYY-MM-DD'),
-            completed: currentToDo.completed
-        } )
-    dirId = currentToDo.id;   
     
+    }else    
+    {   
+        if (isEdited) {
+            await updateDoc(doc(db, 'todos', currentToDo.id), {
+                title: currentToDo.title,
+                descr: currentToDo.descr,
+                deadline: !currentToDo.deadline ? '' : dayjs(currentToDo.deadline).format('YYYY-MM-DD'),
+                completed: !currentToDo.completed ? false : currentToDo.completed
+            })
+            
+
+            setToDos(prev => {
+                return prev.map(item => {
+                    if (item.id === currentToDo.id) {
+                        return currentToDo
+                    } else {
+                        return item;
+                    }
+                })
+            })
+        }
+        dirId = currentToDo.id;
     }
     
+    
+
     if (filesUpload) {
         
-        uploadFiles(dirId);
+        await uploadFiles(dirId);
     } 
     
     if (deleteList) {
@@ -234,9 +274,11 @@ async function onSaveClick(e) {
         onCloseClick();
         }
     }
-    if (!showModal) {
-    return null;
-    }
+
+console.log('Modal render');
+if (!showModal) {
+return null;
+}
 
 
 return (
@@ -252,7 +294,7 @@ return (
                         <input onChange={(e) => onFieldChange(e.target)} type='date' name='deadline' className='modal-date' value={deadline}></input>
                         
                         <div className='checkbox-conteiner'>
-                            <input onChange={(e) => onCheckChange(e.target)}  id='active_check' defaultChecked={completed} type='checkbox' name='completed'></input>
+                            <input onChange={(e) => onFieldChange(e.target)}  id='active_check' defaultChecked={completed} type='checkbox' name='completed'></input>
                             <label htmlFor="active_check">Выполнено</label>
                         </div>
                         <ul>

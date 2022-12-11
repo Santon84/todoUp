@@ -2,15 +2,22 @@
  * @module App
  * @description Основной модуль для туду листа
  */
+//react hooks
 import { useEffect, useState } from 'react';
-import './App.css';
-import Modal from './components/Modal';
-import ToDoList from './components/ToDoList';
-import {db} from './firebase';
-import BeatLoader from "react-spinners/BeatLoader";
 
+//firebase
+import { db } from './firebase';
 import { collection, getDocs } from 'firebase/firestore';
 
+//spinner
+import BeatLoader from "react-spinners/BeatLoader";
+
+//components
+import Modal from './components/Modal';
+import ToDoList from './components/ToDoList';
+
+//styles
+import './App.css';
 /**
  * 
  * @function App
@@ -55,7 +62,7 @@ function App() {
  * @return void
  */
 const loadData = async() => {
-  
+  setIsLoading(true);
   const todoCollection = collection(db, 'todos');
   const toDoSnapshot = await getDocs(todoCollection);
   const toDoList = toDoSnapshot.docs.map(doc => ({...doc.data(),id: doc.id}));
@@ -68,10 +75,9 @@ const loadData = async() => {
  * 
  */
 useEffect(() => {
-    
     loadData();
-  
-},[showModal,currentToDo])
+    console.log('App load data')
+},[])
 
   
 const filterItems = (value) => {
@@ -104,7 +110,7 @@ async function onAddNewToDoClick() {
     setShowModal(true);
 
 }
-
+console.log('App render')
   return (
     <div className="App">
 
@@ -132,8 +138,7 @@ async function onAddNewToDoClick() {
           setShowModal={setShowModal}
           currentToDo={currentToDo} 
           setCurrentToDo={setCurrentToDo}
-          setToDos={setToDos}
-          todos={todos}
+          setToDos={setToDos}      
           isNewToDo={isNewToDo} 
           setIsNewToDo={setIsNewToDo}
           setIsLoading={setIsLoading}
