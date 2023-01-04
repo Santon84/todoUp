@@ -11,8 +11,9 @@ import {db , storage} from '../firebase';
 import {ref, uploadBytes, listAll, getDownloadURL, deleteObject} from 'firebase/storage'
 import { collection, addDoc, updateDoc, doc } from 'firebase/firestore';
 import dayjs from 'dayjs';
-
-
+import Title from './modal/Title';
+import Button from './modal/Button';
+import File from './modal/File'
 
 function Modal({
     setIsLoading, 
@@ -286,7 +287,8 @@ return (
             <div className="modal-window">
                 <button id="modal-close-btn" className="modal-close-button" onClick={() => onCloseClick()} >&times;</button>
                 <div className="modal-conteiner">
-                    <h2>{isNewToDo ? 'Новая задача' : 'Редактировать задачу'}</h2>
+                    <Title title={isNewToDo ? 'Новая задача' : 'Редактировать задачу'}/>
+                    
                     <form onSubmit={(e) => onSaveClick(e)}>
                         <input ref={titleRef} required onChange={(e) => onFieldChange(e.target)} type='text' className='modal-title' name='title' value={title}></input>
                         <textarea required onChange={(e) => onFieldChange(e.target)} rows="10" name="descr" className='modal-descr' value={descr}></textarea>
@@ -298,20 +300,14 @@ return (
                             <label htmlFor="active_check">Выполнено</label>
                         </div>
                         <ul>
-                            {filesList.map((item,index) => {
-                                 return <li key={index}>
-                                    
-                                    <a target='_blank' className='filelist' href={item.url} rel="noreferrer">{item.name}
-                                    
-                                    </a>
-                                    
-                                    <button data-filename={item.name} type='button' onClick={(e) => onFileDelete(e.target.dataset.filename)} className='delete-file-btn'>&times;</button></li>
-                            })}
+                            {
+                            filesList.map((item,index) => <File item= {item} index={index} handleClick={onFileDelete} />
+                            )}
                         </ul>
                         <input multiple="multiple" name="files" type="file" onChange={(e) => setFilesUpload(e.target.files)}></input>
                         <div className='modal-btn-conteiner'>
-                            <input type="submit" className='button modal-primary-btn' value="Сохранить" />
-                            <input type="button" onClick={onCloseClick} className='button' value="Отмена"/>
+                            <Button value='Сохранить' type='submit' isPrimary={true}></Button>
+                            <Button value='Отмена' handleClick={onCloseClick}></Button>
                         </div>
                     </form>
                 </div>
