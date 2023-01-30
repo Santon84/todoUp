@@ -15,7 +15,7 @@ function TodoList({todoList}) {
       getTodoCountFromList(todoList.listId)
       .then(res => setListCount({ count: res}))
     
-  }, [])
+  }, [todoList.listId])
 
 
 

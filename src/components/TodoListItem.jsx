@@ -2,10 +2,10 @@ import React, { useState } from 'react'
 import './ToDoListItem.css'
 import { deleteDoc, doc, updateDoc } from 'firebase/firestore';
 import { db } from '../firebase';
-import { useEffect } from 'react';
+//import { useEffect } from 'react';
 
 function TodoListItem({todo, setTodos, setShowModal, setCurrentToDo}) {
-    const [isSimple, setIsSimple] = useState(false);
+    const [isSimple] = useState(false);
 
     function openToDoModal() {
        // alert('MODAL');

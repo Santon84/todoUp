@@ -16,7 +16,7 @@ import Button from './modal/Button';
 import File from './modal/File'
 
 //router
-import { useParams } from "react-router-dom";
+//import { useParams } from "react-router-dom";
 
 function Modal({
     setIsLoading, 
@@ -31,7 +31,7 @@ function Modal({
 }) {
 
 const { title = '', descr = '', completed, deadline } = currentToDo;
-const { idParam1 } = useParams();
+//const { idParam1 } = useParams();
 console.log('updating '+ title);
 
 const titleRef = useRef();
@@ -41,10 +41,7 @@ const [isEdited, setIsEdited] = useState(false);
 
 
 
-useEffect(() => {
-    console.log(idParam1);
-    console.log('PARAM')
-},[showModal])
+
 
 
 /**
@@ -215,7 +212,7 @@ async function onSaveClick(e) {
 
     if (isNewToDo) {  
         console.log('IS NEW TODO')
-        console.log(idParam1);
+        
         const collectionRef = collection(db,'todoLists', currentToDo.listId || listId, 'todos');
         console.log(collectionRef);
         const toDoId = await addDoc(collectionRef, {

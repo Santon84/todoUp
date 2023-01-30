@@ -19,7 +19,7 @@ function Todos({setIsLoading}) {
     //const [filteredToDos, setFilteredToDos] = useState('')
     const [isNewToDo, setIsNewToDo] = useState(false);
     
-    const [keyword, setKeyword] = useState('')
+    //const [keyword, setKeyword] = useState('')
     
 
     async function onAddNewToDoClick() {
@@ -44,7 +44,7 @@ function Todos({setIsLoading}) {
     //gettig todos in list
     getTodoFromList(idParam).then(response => setTodos(response));
     
-  },[]);
+  },[idParam]);
 
 
 
