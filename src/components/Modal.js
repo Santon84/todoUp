@@ -15,6 +15,9 @@ import Title from './modal/Title';
 import Button from './modal/Button';
 import File from './modal/File'
 
+//router
+import { useParams } from "react-router-dom";
+
 function Modal({
     setIsLoading, 
     setIsNewToDo, 
@@ -23,11 +26,12 @@ function Modal({
     setShowModal, 
     currentToDo, 
     setCurrentToDo,
-    setToDos 
+    setToDos,
+    listId
 }) {
 
 const { title = '', descr = '', completed, deadline } = currentToDo;
-
+const { idParam1 } = useParams();
 console.log('updating '+ title);
 
 const titleRef = useRef();
@@ -37,7 +41,10 @@ const [isEdited, setIsEdited] = useState(false);
 
 
 
-
+useEffect(() => {
+    console.log(idParam1);
+    console.log('PARAM')
+},[showModal])
 
 
 /**
@@ -206,8 +213,12 @@ async function onSaveClick(e) {
     setIsLoading(true);
     let dirId = '';
 
-    if (isNewToDo) {        
-        const toDoId = await addDoc(collection(db,'todos'), {
+    if (isNewToDo) {  
+        console.log('IS NEW TODO')
+        console.log(idParam1);
+        const collectionRef = collection(db,'todoLists', currentToDo.listId || listId, 'todos');
+        console.log(collectionRef);
+        const toDoId = await addDoc(collectionRef, {
         title:currentToDo.title,
         descr:currentToDo.descr,
         deadline: !currentToDo.deadline ? '' : dayjs(currentToDo.deadline).format('YYYY-MM-DD') ,
@@ -223,7 +234,7 @@ async function onSaveClick(e) {
     }else    
     {   
         if (isEdited) {
-            await updateDoc(doc(db, 'todos', currentToDo.id), {
+            await updateDoc(doc(db, 'todoLists', currentToDo.listId, 'todos', currentToDo.id), {
                 title: currentToDo.title,
                 descr: currentToDo.descr,
                 deadline: !currentToDo.deadline ? '' : dayjs(currentToDo.deadline).format('YYYY-MM-DD'),

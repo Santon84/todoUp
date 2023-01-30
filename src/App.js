@@ -4,6 +4,7 @@
  */
 //react hooks
 import { useEffect, useState } from 'react';
+import {Routes, Route, Link} from 'react-router-dom'
 
 //firebase
 import { db } from './firebase';
@@ -13,8 +14,10 @@ import { collection, getDocs } from 'firebase/firestore';
 import BeatLoader from "react-spinners/BeatLoader";
 
 //components
-import Modal from './components/Modal';
-import ToDoList from './components/ToDoList';
+
+//import ToDoList from './components/ToDoList';
+import Home from './pages/Home';
+import Todos from './pages/Todos';
 
 //styles
 import './App.css';
@@ -50,7 +53,7 @@ function App() {
   const [currentToDo, setCurrentToDo] = useState({})
   const [todos, setToDos] = useState([]);
   const [filteredToDos, setFilteredToDos] = useState('')
-  const [isNewToDo, setIsNewToDo] = useState(false);
+  const [isNewToDo, setIsNewToDo] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
   const [keyword, setKeyword] = useState('')
   
@@ -104,45 +107,30 @@ const filterItems = (value) => {
  * @function onAddNewToDoClick
  * @description Открытие модального окна для добавления нового туду элемента 
  */
-async function onAddNewToDoClick() {
 
-    setIsNewToDo(true);
-    setShowModal(true);
-
-}
 console.log('App render')
   return (
     <div className="App">
 
-      <h1>TODO LIST</h1>
-      <button className='btn btn-add' onClick={onAddNewToDoClick}>+</button>
+      <Link className='header-link' to='/'><h1>TODO LIST</h1></Link>
       
-      <div className='top-wrapper'>
-      <input type='search' onChange={e => setKeyword(e.target.value)}></input>
-      <select onChange={(e) => filterItems(e.target.value)}>
-        <option value='all'>Все</option>
-        <option value='work'>В работе</option>
-        <option value='done'>Завершенные</option>
-      </select>
-      </div>
-      <ToDoList 
+      
+      
+      {/* <ToDoList 
           todos={todos} 
           filteredToDos={filteredToDos}
           setToDos={setToDos} 
           setCurrentToDo={setCurrentToDo} 
           setShowModal={setShowModal}
           keyword = {keyword}
-      />
-      <Modal 
-          showModal={showModal} 
-          setShowModal={setShowModal}
-          currentToDo={currentToDo} 
-          setCurrentToDo={setCurrentToDo}
-          setToDos={setToDos}      
-          isNewToDo={isNewToDo} 
-          setIsNewToDo={setIsNewToDo}
-          setIsLoading={setIsLoading}
-      />
+      /> */}
+      <Routes>
+        <Route path='*' element={<Home/>}/>
+        <Route path='/list/:idParam' element={<><Todos setIsLoading={setIsLoading}/></>}/>
+      </Routes>
+      
+      
+      
       <BeatLoader cssOverride={override} color="#36d7b7" loading={isLoading}></BeatLoader>
       
     </div>

@@ -95,6 +95,15 @@ p {
     }
  
 }
+.btn-edit {
+    background-image: url('../icons/pencil-fill.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    &:hover {
+        background-color: @dark-grey-color;
+    }
+ 
+}
 .btn-check {
     background-image: url('../icons/check_white.svg');
     background-repeat: no-repeat;
@@ -103,6 +112,7 @@ p {
     &:hover {
         @media (min-width: 640px) {
         background-color: @primary-color;
+        filter: brightness(1.15);
         }
     }
     &.checked {

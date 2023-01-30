@@ -59,14 +59,19 @@
   justify-content: flex-start;
   color: white;
 }
+.App .header-link {
+  color: #fff;
+  text-decoration: none;
+}
 @media (max-width: 640px) {
   .App {
     padding: 10px;
   }
 }
 .App .top-wrapper {
+  margin: 0 auto;
   margin-top: 15px;
-  width: 350px;
+  max-width: 350px;
   display: flex;
   justify-content: space-between;
   align-items: center;

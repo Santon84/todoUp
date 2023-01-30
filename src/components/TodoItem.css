@@ -136,7 +136,6 @@ p {
 @media (min-width: 640px) {
   .btn-check:hover {
     background-color: #4F59C7;
-    filter: brightness(1.15);
   }
 }
 .btn-check.checked {

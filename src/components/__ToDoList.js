@@ -3,7 +3,7 @@
  */
 
 import React, { useEffect, useState, memo } from 'react'
-import ToDoListItem from './ToDoListItem'
+import ToDoListItem from './__ToDoListItem'
 import dayjs from 'dayjs';
 
 
@@ -26,8 +26,6 @@ const [sortedToDos, setSortedToDos] = useState([]);
 useEffect(() => {
   
   setSortedToDos(todos.sort((a, b) =>  dayjs(b.creationdate) - dayjs(a.creationdate)))
-
-
 
 },[todos])
 
