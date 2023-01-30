@@ -7,8 +7,8 @@ import { useEffect, useState } from 'react';
 import {Routes, Route, Link} from 'react-router-dom'
 
 //firebase
-import { db } from './firebase';
-import { collection, getDocs } from 'firebase/firestore';
+// import { db } from './firebase';
+// import { collection, getDocs } from 'firebase/firestore';
 
 //spinner
 import BeatLoader from "react-spinners/BeatLoader";
@@ -49,14 +49,14 @@ function App() {
   /**
    * 
    */
-  const [showModal, setShowModal] = useState(false);
-  const [currentToDo, setCurrentToDo] = useState({})
-  const [todos, setToDos] = useState([]);
-  const [filteredToDos, setFilteredToDos] = useState('')
-  const [isNewToDo, setIsNewToDo] = useState(true);
-  const [isLoading, setIsLoading] = useState(true);
-  const [keyword, setKeyword] = useState('')
+  // const [showModal, setShowModal] = useState(false);
+  // const [currentToDo, setCurrentToDo] = useState({})
+  // const [todos, setToDos] = useState([]);
+  // const [filteredToDos, setFilteredToDos] = useState('')
+  // const [isNewToDo, setIsNewToDo] = useState(true);
+  // const [keyword, setKeyword] = useState('')
   
+  const [isLoading, setIsLoading] = useState(true);
   
 /**
  * Загрузка всех данных из коллекции 'todos' Firebase
@@ -64,43 +64,43 @@ function App() {
  * @function loadData
  * @return void
  */
-const loadData = async() => {
-  setIsLoading(true);
-  const todoCollection = collection(db, 'todos');
-  const toDoSnapshot = await getDocs(todoCollection);
-  const toDoList = toDoSnapshot.docs.map(doc => ({...doc.data(),id: doc.id}));
-  setToDos(toDoList);
-  setIsLoading(false);
-}
+// const loadData = async() => {
+//   setIsLoading(true);
+//   const todoCollection = collection(db, 'todos');
+//   const toDoSnapshot = await getDocs(todoCollection);
+//   const toDoList = toDoSnapshot.docs.map(doc => ({...doc.data(),id: doc.id}));
+//   setToDos(toDoList);
+//   setIsLoading(false);
+// }
 
 /**
  * обновляем данные после открытия модального окна или изменения редактируемого туду
  * 
  */
 useEffect(() => {
-    loadData();
-    console.log('App load data')
+    // loadData();
+    setIsLoading(false);
 },[])
 
   
-const filterItems = (value) => {
+// const filterItems = (value) => {
 
-  switch (value) {
-    case 'all' : 
-      setFilteredToDos('');
-      break;
-    case 'done' : 
-      setFilteredToDos(false);
-      break;
-    case 'work' : 
-      setFilteredToDos(true);
-      break;
+//   switch (value) {
+//     case 'all' : 
+//       setFilteredToDos('');
+//       break;
+//     case 'done' : 
+//       setFilteredToDos(false);
+//       break;
+//     case 'work' : 
+//       setFilteredToDos(true);
+//       break;
 
-    default: setFilteredToDos('');
+//     default: setFilteredToDos('');
 
-  }
+//   }
 
-}
+// }
 
 
 /**
