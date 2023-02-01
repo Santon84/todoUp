@@ -41,7 +41,7 @@ async function handleKeyDown(e) {
   return (
     <div key={todoList.listId} className='todo-list'>
      <div  className='todo-list__text-conteiner'>
-     <Link onClick={inputRef?.current?.disabled ? null : (e) => e.preventDefault()} to={'list/'+todoList.listId}><input className='todo-list__input-name' ref={inputRef} value={listName} onKeyDown={handleKeyDown} onChange={(e) => setListName(e.target.value)} disabled></input></Link>
+     <Link to={'list/'+todoList.listId}><input className='todo-list__input-name' ref={inputRef} value={listName} onKeyDown={handleKeyDown} onChange={(e) => setListName(e.target.value)} disabled></input></Link>
      {/* <Link to={'list/'+todoList.listId}><p>{todoList.name}({listCount.count || 0})</p></Link> */}
       </div>
       <button onClick={handleEditClick} className='btn btn-edit' type='button'></button>
