@@ -125,7 +125,7 @@ console.log('App render')
           keyword = {keyword}
       /> */}
       <Routes>
-        <Route path='*' element={<Home/>}/>
+        <Route path='*' element={<Home setIsLoading={setIsLoading}/>}/>
         <Route path='/list/:idParam' element={<><Todos setIsLoading={setIsLoading}/></>}/>
       </Routes>
       

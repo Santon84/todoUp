@@ -9,8 +9,20 @@
   border-radius: 20px;
   margin: 10px;
 }
-.todo-list .todo-list__text-conteiner {
+.todo-list__text-conteiner {
   display: flex;
   justify-content: flex-start;
   align-items: center;
+}
+.todo-list__input-name {
+  background-color: #f0f0f0;
+  font-size: 24px;
+}
+.todo-list__input-name:disabled {
+  cursor: pointer;
+  text-decoration: underline;
+  border: none;
+  background-color: #ffffff;
+  font-size: 24px;
+  color: blue;
 }

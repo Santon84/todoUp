@@ -27,7 +27,8 @@ function Modal({
     currentToDo, 
     setCurrentToDo,
     setToDos,
-    listId
+    listId,
+    isSimpleList
 }) {
 
 const { title = '', descr = '', completed, deadline } = currentToDo;
@@ -36,7 +37,6 @@ console.log('updating '+ title);
 
 const titleRef = useRef();
 const [isEdited, setIsEdited] = useState(false);
-
 
 
 
@@ -209,15 +209,15 @@ async function onSaveClick(e) {
     //console.log(beforeToDo)
     setIsLoading(true);
     let dirId = '';
-
+    
     if (isNewToDo) {  
         console.log('IS NEW TODO')
-        
+        console.log(currentToDo);
         const collectionRef = collection(db,'todoLists', currentToDo.listId || listId, 'todos');
-        console.log(collectionRef);
+        //console.log(collectionRef);
         const toDoId = await addDoc(collectionRef, {
         title:currentToDo.title,
-        descr:currentToDo.descr,
+        descr:currentToDo.descr || '',
         deadline: !currentToDo.deadline ? '' : dayjs(currentToDo.deadline).format('YYYY-MM-DD') ,
         completed: currentToDo.completed || false,
         creationdate: dayjs(Date()).format('YYYY-MM-DD HH:mm:ss')
@@ -231,9 +231,11 @@ async function onSaveClick(e) {
     }else    
     {   
         if (isEdited) {
+            console.log('NOT NEW')
+            console.log(currentToDo);
             await updateDoc(doc(db, 'todoLists', currentToDo.listId, 'todos', currentToDo.id), {
                 title: currentToDo.title,
-                descr: currentToDo.descr,
+                descr: currentToDo.descr || '',
                 deadline: !currentToDo.deadline ? '' : dayjs(currentToDo.deadline).format('YYYY-MM-DD'),
                 completed: !currentToDo.completed ? false : currentToDo.completed
             })
@@ -299,6 +301,7 @@ return (
                     
                     <form onSubmit={(e) => onSaveClick(e)}>
                         <input ref={titleRef} required onChange={(e) => onFieldChange(e.target)} type='text' className='modal-title' name='title' value={title}></input>
+                        {isSimpleList ? <></> : <>
                         <textarea required onChange={(e) => onFieldChange(e.target)} rows="10" name="descr" className='modal-descr' value={descr}></textarea>
                         <label htmlFor="deadline">Срок выполнения</label>
                         <input onChange={(e) => onFieldChange(e.target)} type='date' name='deadline' className='modal-date' value={deadline}></input>
@@ -313,6 +316,8 @@ return (
                             )}
                         </ul>
                         <input multiple="multiple" name="files" type="file" onChange={(e) => setFilesUpload(e.target.files)}></input>
+                    </>
+                    }
                         <div className='modal-btn-conteiner'>
                             <Button value='Сохранить' type='submit' isPrimary={true}></Button>
                             <Button value='Отмена' handleClick={onCloseClick}></Button>

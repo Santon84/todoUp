@@ -18,7 +18,7 @@ function Todos({setIsLoading}) {
     const [currentToDo, setCurrentToDo] = useState({})
     //const [filteredToDos, setFilteredToDos] = useState('')
     const [isNewToDo, setIsNewToDo] = useState(false);
-    
+    const [isSimpleList, setIsSimpleList ] = useState(false);
     //const [keyword, setKeyword] = useState('')
     
 
@@ -39,12 +39,25 @@ function Todos({setIsLoading}) {
     
     //list name by id
     getList(idParam)
-    .then(response => setList(response));
+    .then(response => {
+      setIsSimpleList(response.isSimple);
+      setList(response)
+    });
     
     //gettig todos in list
     getTodoFromList(idParam).then(response => setTodos(response));
     
   },[idParam]);
+
+  useEffect(() => {
+    
+    //list name by id
+    if(showModal) return;
+    
+    //gettig todos in list
+    getTodoFromList(idParam).then(response => setTodos(response));
+    
+  },[showModal, idParam]);
 
 
 
@@ -66,7 +79,7 @@ function Todos({setIsLoading}) {
       
       {todos.map(todo => {
         return   ( 
-        <TodoListItem todo={todo} setTodos={setTodos} setShowModal={setShowModal} setCurrentToDo={setCurrentToDo}/>
+        <TodoListItem key={todo.id} isSimpleList={isSimpleList} todo={todo} setTodos={setTodos} setShowModal={setShowModal} setCurrentToDo={setCurrentToDo}/>
         )
       })}
      <Modal 
@@ -79,6 +92,7 @@ function Todos({setIsLoading}) {
           isNewToDo={isNewToDo} 
           setIsNewToDo={setIsNewToDo}
           setIsLoading={setIsLoading}
+          isSimpleList={isSimpleList}
       />
     </div>
   )

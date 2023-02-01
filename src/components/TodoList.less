@@ -8,9 +8,22 @@
     background-color: #FFFFFF;
     border-radius: 20px;
     margin: 10px;
-    .todo-list__text-conteiner {
+    &__text-conteiner {
         display: flex;
         justify-content: flex-start;
         align-items: center;
+    }
+    &__input-name {
+        //border: none;
+        background-color: #f0f0f0;
+        font-size: 24px;
+    }
+    &__input-name:disabled{
+        cursor: pointer;
+        text-decoration: underline;
+        border: none;
+        background-color: #ffffff;
+        font-size: 24px;
+        color: blue;
     }
 }

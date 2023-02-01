@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+
 import './ToDoListItem.css'
 import { deleteDoc, doc, updateDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 //import { useEffect } from 'react';
 
-function TodoListItem({todo, setTodos, setShowModal, setCurrentToDo}) {
-    const [isSimple] = useState(false);
+function TodoListItem({todo, setTodos, setShowModal, setCurrentToDo, isSimpleList}) {
+    
 
     function openToDoModal() {
        // alert('MODAL');
@@ -45,11 +45,11 @@ function TodoListItem({todo, setTodos, setShowModal, setCurrentToDo}) {
    
   return (
     <div>
-      <div data-key={todo.id} key={todo.id} className='todo-list-item'>
+      <div data-key={todo.id} key={todo.id} className={ todo.completed ? 'todo-list-item completed' : 'todo-list-item'}>
         <button  className={todo.completed ? 'btn btn-check checked' : 'btn btn-check'} type='button' onClick={() => updateStatusToDo(todo.id)}></button>
         <div  className='text-conteiner'>
           <a href='#edit-todo' ><p className='todo-title' onClick={openToDoModal}>{todo?.title}</p></a>
-          {isSimple ? '' : <p className='todo-description'>{todo?.descr}</p>}
+          {isSimpleList ? '' : <p className='todo-description'>{todo?.descr}</p>}
         </div>
         <button onClick={() => deleteToDo(todo.id)} className='btn btn-delete' type='button'></button>
         </div>
