@@ -1,7 +1,7 @@
 import React from 'react'
-import { useEffect, useState, useRef } from 'react';
+import {  useState, useRef } from 'react';
 //services 
-import {getTodoCountFromList} from '../services/getData';
+//import {getTodoCountFromList} from '../services/getData';
 import './TodoList.css'
 import { doc, updateDoc } from 'firebase/firestore';
 import { db } from '../firebase';
@@ -10,15 +10,15 @@ import { db } from '../firebase';
 import { Link } from 'react-router-dom';
 
 function TodoList({todoList}) {
-  const [listCount, setListCount] = useState({count:0}); 
+  //const [listCount, setListCount] = useState({count:0}); 
   const [listName,  setListName] = useState(todoList.name)
   const inputRef = useRef();
     
-  useEffect(() => {
-      getTodoCountFromList(todoList.listId)
-      .then(res => setListCount({ count: res}))
+  // useEffect(() => {
+  //     getTodoCountFromList(todoList.listId)
+  //     .then(res => setListCount({ count: res}))
     
-  }, [todoList.listId])
+  // }, [todoList.listId])
 
 function handleEditClick() {
 
