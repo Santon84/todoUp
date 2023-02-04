@@ -101,16 +101,7 @@ p {
   margin: 5px;
   cursor: pointer;
 }
-.btn-add {
-  background-color: #4F59C7;
-  color: #FFFFFF;
-  font-size: 30px;
-  mix-blend-mode: normal;
-}
-.btn-add:hover {
-  background-color: #e7e7e7;
-  color: #4F59C7;
-}
+
 .btn-delete {
   background-image: url('../icons/trash-fill.svg');
   background-repeat: no-repeat;
@@ -136,7 +127,6 @@ p {
 @media (min-width: 640px) {
   .btn-check:hover {
     background-color: #4F59C7;
-    filter: brightness(1.15);
   }
 }
 .btn-check.checked {

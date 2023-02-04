@@ -1,7 +1,7 @@
 
 import './ToDoListItem.css'
 import { deleteDoc, doc, updateDoc } from 'firebase/firestore';
-import { db } from '../firebase';
+import { db } from '../../firebase';
 //import { useEffect } from 'react';
 
 function TodoListItem({todo, setTodos, setShowModal, setCurrentToDo, isSimpleList}) {

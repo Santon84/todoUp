@@ -2,12 +2,12 @@
 import React, {useState, useEffect} from 'react'
 //router
 import { useParams } from "react-router-dom"
-import Modal from '../components/Modal';
+import Modal from './Modal';
 //services
-import {getTodoFromList, getList} from '../services/getData';
+import {getTodoFromList, getList} from '../../services/getData';
 //components
-import TodoListItem from '../components/TodoListItem';
-
+import TodoListItem from './TodoListItem';
+import ButtonAdd from '../../components/Buttons/ButtonAdd';
 
 
 function Todos({setIsLoading}) {
@@ -66,7 +66,7 @@ function Todos({setIsLoading}) {
   return (
     
     <div>
-      <button className='btn btn-add' onClick={onAddNewToDoClick}>+</button>
+      <ButtonAdd handleClick={onAddNewToDoClick} />
       <h2>{list?.name || 'Лист не найден'} </h2>
       <div className='top-wrapper'>
       <input type='search'></input>

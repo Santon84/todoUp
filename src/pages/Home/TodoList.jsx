@@ -1,24 +1,25 @@
 import React from 'react'
-import {  useState, useRef } from 'react';
+import {  useState, useRef, useEffect } from 'react';
 //services 
-//import {getTodoCountFromList} from '../services/getData';
+import {getTodoCountFromList} from '../../services/getData';
 import './TodoList.css'
 import { doc, updateDoc } from 'firebase/firestore';
-import { db } from '../firebase';
+import { db } from '../../firebase';
 
 //router
 import { Link } from 'react-router-dom';
 
 function TodoList({todoList}) {
-  //const [listCount, setListCount] = useState({count:0}); 
+  const [listCount, setListCount] = useState({count:0}); 
   const [listName,  setListName] = useState(todoList.name)
   const inputRef = useRef();
+
     
-  // useEffect(() => {
-  //     getTodoCountFromList(todoList.listId)
-  //     .then(res => setListCount({ count: res}))
+  useEffect(() => {
+      getTodoCountFromList(todoList.listId)
+      .then(res => setListCount({ count: res}))
     
-  // }, [todoList.listId])
+  }, [todoList.listId])
 
 function handleEditClick() {
 
@@ -39,10 +40,9 @@ async function handleKeyDown(e) {
 }
 
   return (
-    <div key={todoList.listId} className='todo-list'>
+    <div data-count={listCount.count} key={todoList.listId} className='todo-list'>
      <div  className='todo-list__text-conteiner'>
      <Link to={'list/'+todoList.listId}><input className='todo-list__input-name' ref={inputRef} value={listName} onKeyDown={handleKeyDown} onChange={(e) => setListName(e.target.value)} disabled></input></Link>
-     {/* <Link to={'list/'+todoList.listId}><p>{todoList.name}({listCount.count || 0})</p></Link> */}
       </div>
       <button onClick={handleEditClick} className='btn btn-edit' type='button'></button>
       

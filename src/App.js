@@ -16,8 +16,8 @@ import BeatLoader from "react-spinners/BeatLoader";
 //components
 
 //import ToDoList from './components/ToDoList';
-import Home from './pages/Home';
-import Todos from './pages/Todos';
+import Home from './pages/Home/Home';
+import Todos from './pages/Todos/Todos';
 
 //styles
 import './App.css';

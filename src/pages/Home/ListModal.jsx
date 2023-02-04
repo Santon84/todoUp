@@ -6,17 +6,16 @@
 
 
 import React, { useEffect, useState } from 'react'
-import './Modal.css';
-import {db } from '../firebase';
+import {db } from '../../firebase';
 import { collection, addDoc } from 'firebase/firestore';
-import Title from './modal/Title';
-import Button from './modal/Button';
+import Title from '../Todos/modal/Title';
+import Button from '../Todos/modal/Button';
 
 
 //router
 //import { useParams } from "react-router-dom";
 
-function AddNewListModal({showListModal, setShowListModal, setIsLoading}) {
+function ListModal({showListModal, setShowListModal, setIsLoading}) {
 
 const [newListName,  setNewListName] = useState('');
 
@@ -109,6 +108,6 @@ return (
   );
 }
 
-export default AddNewListModal;
+export default ListModal;
 
 

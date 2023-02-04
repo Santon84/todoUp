@@ -88,31 +88,8 @@ p {
   height: 38px;
   overflow: hidden;
 }
-.btn {
-  mix-blend-mode: darken;
-  width: 35px;
-  height: 35px;
-  background-color: #e7e7e7;
-  border-radius: 5px;
-  font-size: 30px;
-  padding: 2px 10px;
-  line-height: 1;
-  border: none;
-  margin: 5px;
-  cursor: pointer;
-}
-.btn-add {
-  background-color: #4F59C7;
-  color: #FFFFFF;
-  font-size: 30px;
-  mix-blend-mode: normal;
-}
-.btn-add:hover {
-  background-color: #e7e7e7;
-  color: #4F59C7;
-}
 .btn-delete {
-  background-image: url('../icons/trash-fill.svg');
+  background-image: url('../../icons/trash-fill.svg');
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -120,7 +97,7 @@ p {
   background-color: #bebebe;
 }
 .btn-edit {
-  background-image: url('../icons/pencil-fill.svg');
+  background-image: url('../../icons/pencil-fill.svg');
   background-repeat: no-repeat;
   background-position: center;
 }
@@ -128,7 +105,7 @@ p {
   background-color: #bebebe;
 }
 .btn-check {
-  background-image: url('../icons/check_white.svg');
+  background-image: url('../../icons/check_white.svg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: 20px;
@@ -136,6 +113,7 @@ p {
 @media (min-width: 640px) {
   .btn-check:hover {
     background-color: #4F59C7;
+    filter: brightness(1.15);
   }
 }
 .btn-check.checked {

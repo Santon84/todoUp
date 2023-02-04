@@ -7,7 +7,7 @@
 
 import React, { useEffect, useState, useRef } from 'react'
 import './Modal.css';
-import {db , storage} from '../firebase';
+import {db , storage} from '../../firebase';
 import {ref, uploadBytes, listAll, getDownloadURL, deleteObject} from 'firebase/storage'
 import { collection, addDoc, updateDoc, doc } from 'firebase/firestore';
 import dayjs from 'dayjs';

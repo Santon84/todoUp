@@ -1,0 +1,27 @@
+
+    $primary-color: #4F59C7;
+    $grey-color: #e7e7e7;
+
+.btn {
+    mix-blend-mode: darken;
+    width: 35px;
+    height: 35px;
+    background-color: $grey-color;
+    border-radius: 5px;
+    font-size: 30px;
+    padding: 2px 10px;
+    line-height: 1;
+    border: none;
+    margin: 5px;
+    cursor: pointer;
+  }
+  .btn-add {
+    background-color: $primary-color;
+    color: #FFFFFF;
+    font-size: 30px;
+    mix-blend-mode: normal;
+    &:hover {
+        background-color: $grey-color;
+        color: $primary-color
+    }
+}
