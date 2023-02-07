@@ -42,7 +42,7 @@ async function onAddNewToDoClick() {
         <p>Списки задач</p>
         {todoLists.map(list => {
           //console.log(list);
-            return <TodoList key={list.listId} todoList={list}/>
+            return <TodoList key={list.listId} todoList={list} setTodoLists={setTodoLists}/>
         })}
         <ButtonAdd handleClick={onAddNewToDoClick} />
         <ListModal setIsLoading={setIsLoading} showListModal={showListModal} setShowListModal={setShowListModal} />

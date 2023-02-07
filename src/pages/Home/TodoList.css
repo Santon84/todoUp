@@ -45,3 +45,20 @@
   line-height: 1;
   padding: 0;
 }
+.todo-list .delete-list-btn {
+  all: unset;
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  right: -40px;
+  font-size: 1.5rem;
+  background-color: #FFFFFF;
+  border-radius: 50%;
+  opacity: 0;
+  transition: all 0.3s ease-in;
+}
+.todo-list .delete-list-btn.active {
+  opacity: 0.9;
+  pointer-events: all;
+  cursor: pointer;
+}

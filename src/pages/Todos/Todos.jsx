@@ -77,7 +77,7 @@ function Todos({setIsLoading}) {
    * Getting todos from List by param in url
    */
   useEffect(() => {
-    
+    setIsLoading(true);
     //list name by id
     getList(idParam)
     .then(response => {
@@ -86,9 +86,13 @@ function Todos({setIsLoading}) {
     });
     
     //gettig todos in list
-    getTodoFromList(idParam).then(response => setTodos(response));
-    
-  },[idParam]);
+    getTodoFromList(idParam).then(response => {
+      setTodos(response);
+      setIsLoading(false);
+    });
+
+   // 
+  },[idParam, setIsLoading]);
 
 
 /**
@@ -129,9 +133,12 @@ function Todos({setIsLoading}) {
       
       {sortedToDos.map(todo => {
         return   ( 
+        
         <TodoListItem key={todo.id} isSimpleList={isSimpleList} todo={todo} setTodos={setTodos} setShowModal={setShowModal} setCurrentToDo={setCurrentToDo}/>
+       
         )
       })}
+      <p>{todos?.length === 0 ? 'Список пока пуст': ''}</p>
      <Modal 
           showModal={showModal} 
           setShowModal={setShowModal}
