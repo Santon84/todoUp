@@ -83,24 +83,7 @@ useEffect(() => {
 },[])
 
   
-// const filterItems = (value) => {
 
-//   switch (value) {
-//     case 'all' : 
-//       setFilteredToDos('');
-//       break;
-//     case 'done' : 
-//       setFilteredToDos(false);
-//       break;
-//     case 'work' : 
-//       setFilteredToDos(true);
-//       break;
-
-//     default: setFilteredToDos('');
-
-//   }
-
-// }
 
 
 /**
@@ -116,14 +99,7 @@ console.log('App render')
       
       
       
-      {/* <ToDoList 
-          todos={todos} 
-          filteredToDos={filteredToDos}
-          setToDos={setToDos} 
-          setCurrentToDo={setCurrentToDo} 
-          setShowModal={setShowModal}
-          keyword = {keyword}
-      /> */}
+
       <Routes>
         <Route path='*' element={<Home setIsLoading={setIsLoading}/>}/>
         <Route path='/list/:idParam' element={<><Todos setIsLoading={setIsLoading}/></>}/>

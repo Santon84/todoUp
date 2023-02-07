@@ -8,7 +8,7 @@ import {getTodoFromList, getList} from '../../services/getData';
 //components
 import TodoListItem from './TodoListItem';
 import ButtonAdd from '../../components/Buttons/ButtonAdd';
-
+import dayjs from 'dayjs'
 
 function Todos({setIsLoading}) {
     const { idParam } = useParams();
@@ -19,22 +19,63 @@ function Todos({setIsLoading}) {
     //const [filteredToDos, setFilteredToDos] = useState('')
     const [isNewToDo, setIsNewToDo] = useState(false);
     const [isSimpleList, setIsSimpleList ] = useState(false);
-    //const [keyword, setKeyword] = useState('')
+    const [keyword, setKeyword] = useState('')
+    const [sortedToDos, setSortedToDos] = useState([]);
+    const [filteredToDos, setFilteredToDos] = useState('');
+
+    const filterItems = (value) => {
+
+      switch (value) {
+        case 'all' : 
+          setFilteredToDos('');
+          break;
+        case 'done' : 
+          setFilteredToDos(false);
+          break;
+        case 'work' : 
+          setFilteredToDos(true);
+          break;
     
-
-    async function onAddNewToDoClick() {
-
-      setIsNewToDo(true);
-      setShowModal(true);
+        default: setFilteredToDos('');
+    
+      }
     
     }
-  /**
-   * Открывает модальное окно 
-   * Устанавливает текущий(currentToDo) туду по которому кликнули 
-   * @function openToDoModal
-   * 
-   */
+    /**
+     * Сортировка туду листа
+     */
+    useEffect(() => {
+      
+      setSortedToDos(todos.sort((a, b) =>  dayjs(b.creationdate) - dayjs(a.creationdate)))
+
+    },[todos])
+
+
+
+    useEffect(() => {
+
+      setSortedToDos(todos.filter(item => {
+        //console.log(item.completed !== filteredToDos ? 'not equal' : 'equal');
+        return item.completed !== filteredToDos
+      }))
+
+      if (keyword !== '') {
+        setSortedToDos(prev => prev.filter(item => {
+          console.log(item.title);
+          return item.title.toLowerCase().includes((keyword.toLowerCase())) || item.descr.toLowerCase().includes((keyword.toLowerCase()));
+        }))
+        
+      }
+    },[filteredToDos, keyword, todos])    
+
+    
+ 
   
+
+
+    /**
+   * Getting todos from List by param in url
+   */
   useEffect(() => {
     
     //list name by id
@@ -49,11 +90,15 @@ function Todos({setIsLoading}) {
     
   },[idParam]);
 
+
+/**
+ * updating todos after modal show
+ */
   useEffect(() => {
     
     //list name by id
     if(showModal) return;
-    
+    //console.log('UPDATING TODO LIST');
     //gettig todos in list
     getTodoFromList(idParam).then(response => setTodos(response));
     
@@ -61,7 +106,12 @@ function Todos({setIsLoading}) {
 
 
 
+  async function onAddNewToDoClick() {
+
+    setIsNewToDo(true);
+    setShowModal(true);
   
+  }
 
   return (
     
@@ -69,15 +119,15 @@ function Todos({setIsLoading}) {
       <ButtonAdd handleClick={onAddNewToDoClick} />
       <h2>{list?.name || 'Лист не найден'} </h2>
       <div className='top-wrapper'>
-      <input type='search'></input>
-      <select >
+      <input type='search' onChange={e => setKeyword(e.target.value)}></input>
+      <select onChange={(e) => filterItems(e.target.value)}>
         <option value='all'>Все</option>
         <option value='work'>В работе</option>
         <option value='done'>Завершенные</option>
       </select>
       </div>
       
-      {todos.map(todo => {
+      {sortedToDos.map(todo => {
         return   ( 
         <TodoListItem key={todo.id} isSimpleList={isSimpleList} todo={todo} setTodos={setTodos} setShowModal={setShowModal} setCurrentToDo={setCurrentToDo}/>
         )

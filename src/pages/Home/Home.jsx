@@ -24,7 +24,7 @@ useEffect(() => {
 
   getTodoLists()
   .then(response => {
-    console.log(response)
+    //console.log(response)
     setTodoLists(response);
   })
 },[showListModal])
@@ -41,7 +41,7 @@ async function onAddNewToDoClick() {
     <div className='home'>
         <p>Списки задач</p>
         {todoLists.map(list => {
-          console.log(list);
+          //console.log(list);
             return <TodoList key={list.listId} todoList={list}/>
         })}
         <ButtonAdd handleClick={onAddNewToDoClick} />
