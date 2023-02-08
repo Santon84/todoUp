@@ -9,6 +9,7 @@
     border-radius: 20px;
     margin: 10px;
     position: relative;
+    
     &__text-conteiner {
         padding-left: 20px;
         display: flex;
@@ -19,6 +20,7 @@
         //border: none;
         background-color: #f0f0f0;
         font-size: 24px;
+        width: 200px;
     }
     &__input-name:disabled{
         cursor: pointer;
@@ -67,5 +69,8 @@
         //     background-color: rgb(86, 86, 244);
         //     color: #FFFFFF;
         // }
+    }
+    @media screen and (max-width: 480px) {
+        width:320px;
     }
 }

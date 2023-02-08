@@ -19,6 +19,7 @@
 .todo-list__input-name {
   background-color: #f0f0f0;
   font-size: 24px;
+  width: 200px;
 }
 .todo-list__input-name:disabled {
   cursor: pointer;
@@ -61,4 +62,9 @@
   opacity: 0.9;
   pointer-events: all;
   cursor: pointer;
+}
+@media screen and (max-width: 480px) {
+  .todo-list {
+    width: 320px;
+  }
 }
