@@ -28,7 +28,7 @@ function handleEditClick() {
   if (!inputRef.current.disabled) {
 
     inputRef.current.focus();
-    console.log(deleteButtonRef.current.className);
+    
     if (!~deleteButtonRef.current.className.indexOf("active")) {
       deleteButtonRef.current.className +=' active';
     }
@@ -51,10 +51,13 @@ async function handleDeleteList(id) {
   }
 }
 async function handleKeyDown(e) {
-
   if (e.key !== 'Enter') { return }
   if (e.target.value === '' || undefined || null ) {return}
   inputRef.current.disabled = true;
+  if (~deleteButtonRef.current.className.indexOf("active")) {
+    deleteButtonRef.current.className = deleteButtonRef.current.className.replace(' active', '');
+  }
+  
   await updateDoc(doc(db,'todoLists', todoList.listId), {
     name: e.target.value
   });
@@ -65,7 +68,7 @@ async function handleKeyDown(e) {
   return (
     <div data-count={listCount.count} key={todoList.listId} className='todo-list'>
      <div  className='todo-list__text-conteiner'>
-     <Link to={'list/'+todoList.listId}><input className='todo-list__input-name' ref={inputRef} value={listName} onKeyDown={handleKeyDown} onChange={(e) => setListName(e.target.value)} disabled></input></Link>
+     <Link to={'list/'+todoList.listId}><input className='todo-list__input-name' ref={inputRef} value={listName} onKeyDown={(e) => handleKeyDown(e)} onChange={(e) => setListName(e.target.value)} disabled></input></Link>
       </div>
       <button onClick={handleEditClick} className='btn btn-edit' type='button'></button>
       <button ref={deleteButtonRef} onClick={() => handleDeleteList(todoList.listId)} type='button' name='delete-list-btn' className='delete-list-btn'>&times;</button>
